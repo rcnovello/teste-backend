@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req } from '@nestjs/common';
 
 import { PerfilService } from '@appModules/domain/services/perfil.services';
 import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
-import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+//import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+
+import { Request } from 'express';
 
 import { Helpers } from '@appModules/helpers/helpers'
 
@@ -17,19 +19,17 @@ export class PerfilController {
 
 
     @Post()
-    create(@Body() createPerfilDto: CreatePerfilDto) {   
-
-      //console.log('teste', pTeste);
-      //return;
-      return this.perfilService.create(createPerfilDto);
-    }
+    create(@Body() createPerfilDto: CreatePerfilDto) {       
+      console.log('teste',createPerfilDto);
+      return this.perfilService.insertPerfil(createPerfilDto)
+    };
     
   
     
     @Get()
     findAll() {
       return this.perfilService.findAll();
-    }
+    };
 
     /*
   

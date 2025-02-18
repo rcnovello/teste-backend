@@ -25,9 +25,11 @@ export class PerfilService {
     return 'Rota perfil';
   }
 
-  public async create(createPerfilDto: CreatePerfilDto) {
+  public async insertPerfil(createPerfilDto: CreatePerfilDto) {
 
     console.log('teste 2',createPerfilDto)
+
+    return;
                       
     /*
     const validationPipe = new ValidationPipe({

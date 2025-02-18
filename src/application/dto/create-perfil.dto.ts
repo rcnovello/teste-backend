@@ -16,7 +16,7 @@ export class CreatePerfilDto {
     ds_complemento?: string
     nm_cidade?: string
     nm_bairro?: string
-    tp_estados?: string
+    tp_estado?: string
 
     @IsEmail()
     @IsNotEmpty() 

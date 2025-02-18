@@ -1,7 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
-@Entity()
+@Entity('perfil')
 export class Perfil {
+    
     @PrimaryGeneratedColumn()
     cd_perfil: number
 
@@ -48,6 +49,6 @@ export class Perfil {
     nm_bairro: string
 
     @Column()
-    tp_estados: string
+    tp_estado: string
 
 }

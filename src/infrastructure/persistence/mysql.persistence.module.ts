@@ -14,7 +14,7 @@ import { PerfilService } from '@appModules/domain/services/perfil.services';
         password: process.env.MYSQLDB_PASSWORD,
         //database: process.env.MYSQLDB_DATABASE,
         database: 'wefit',
-        //entities: [Perfil],
+        entities: [Perfil],
         synchronize: true}),
       TypeOrmModule.forFeature([Perfil])],    
   providers: [PerfilService],          

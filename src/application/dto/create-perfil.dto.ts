@@ -3,26 +3,38 @@ import { IsEmail, IsNotEmpty, IsOptional  } from 'class-validator';
 export class CreatePerfilDto {
 
     @IsNotEmpty() 
-    cd_perfil?: number
-    tp_perfil?: string
-    tp_pessoa?: string
-    nr_documento_pessoa?: string
-    nr_cpf_responsavel?: string
-    nm_perfil?: string
-    nr_celular?: string        
-    nr_cep?: string
-    ds_logradouro?: string
-    nr_logradouro?: number
-    ds_complemento?: string
-    nm_cidade?: string
-    nm_bairro?: string
-    tp_estado?: string
+    tp_perfil: string
+
+    @IsNotEmpty() 
+    tp_pessoa: string
+    @IsNotEmpty() 
+    nr_documento_pessoa: string
+    @IsNotEmpty() 
+    nr_cpf_responsavel: string
+    @IsNotEmpty() 
+    nm_perfil: string
+    @IsNotEmpty() 
+    nr_celular: string        
+    @IsNotEmpty() 
+    nr_cep: string
+    @IsNotEmpty() 
+    ds_logradouro: string
+    @IsNotEmpty() 
+    nr_logradouro: number
+    @IsNotEmpty() 
+    ds_complemento: string
+    @IsNotEmpty() 
+    nm_cidade: string
+    @IsNotEmpty() 
+    nm_bairro: string
+    @IsNotEmpty() 
+    tp_estado: string
 
     @IsEmail()
     @IsNotEmpty() 
-    ds_email?: string
+    ds_email: string
 
     @IsOptional()    
-    nr_telefone?: string
+    nr_telefone: string
 
 };

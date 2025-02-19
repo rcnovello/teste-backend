@@ -1,14 +1,13 @@
 import { Controller, Get, Post, Body, Req } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 
 import { PerfilService } from '@appModules/domain/services/perfil.services';
 import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
-//import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
-
-import { Request } from 'express';
+import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 
 import { Helpers } from '@appModules/helpers/helpers'
 
-@Controller('Perfil')
+@Controller('perfil')
 export class PerfilController {  
 
     constructor(
@@ -17,11 +16,22 @@ export class PerfilController {
 
     private helpers: Helpers = new Helpers();
 
+    private perfilInterface: PerfilInterface;
+
 
     @Post()
-    create(@Body() createPerfilDto: CreatePerfilDto) {       
-      console.log('teste',createPerfilDto);
-      return this.perfilService.insertPerfil(createPerfilDto)
+    create(@Body(new ValidationPipe()) createPerfilDto: CreatePerfilDto) {       
+      //console.log('teste',createPerfilDto);
+
+      //return;
+
+      //this.perfilInterface = createPerfilDto;
+
+   
+      //console.log('teste 2',this.perfilInterface);
+
+      return this.perfilService.create(createPerfilDto);
+      //return this.perfilService.insertPerfil(createPerfilDto)
     };
     
   

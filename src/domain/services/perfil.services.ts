@@ -7,6 +7,8 @@ import { Helpers } from '@appModules/helpers/helpers';
 import { Perfil } from '@appModules/domain/entities/perfil.entity';
 import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
 
+import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+
 
 
 @Injectable()
@@ -21,52 +23,45 @@ export class PerfilService {
 
   private helpers: Helpers = new Helpers();
 
+  private perfil: Perfil;
+
   getHello(): string {
     return 'Rota perfil';
   }
 
-  public async insertPerfil(createPerfilDto: CreatePerfilDto) {
+  public async create(createPerfilDto: CreatePerfilDto) {
+    //public async create(perfilInterface: PerfilInterface) {
 
-    console.log('teste 2',createPerfilDto)
-
-    return;
-                      
-    /*
-    const validationPipe = new ValidationPipe({
-         whitelist: true // Remove propriedades não definidas no DTO
-        ,forbidNonWhitelisted: true // Lança erro se houver propriedades não permitidas
-        ,transform: true // Converte automaticamente os tipos dos dados
-    });
-    */
-           
+    this.perfil = new Perfil();
+    this.perfil.tp_perfil = createPerfilDto.tp_perfil;
+    this.perfil.tp_pessoa = createPerfilDto.tp_pessoa;
+    this.perfil.nr_documento_pessoa= createPerfilDto.nr_documento_pessoa;
+    this.perfil.nr_cpf_responsavel = createPerfilDto.nr_cpf_responsavel;
+    this.perfil.nm_perfil = createPerfilDto.nm_perfil;
+    this.perfil.nr_celular = createPerfilDto.nr_celular;
+    this.perfil.nr_cep = createPerfilDto.nr_cep;
+    this.perfil.ds_logradouro = createPerfilDto.ds_logradouro;
+    this.perfil.nr_logradouro = createPerfilDto.nr_logradouro;
+    this.perfil.ds_complemento = createPerfilDto.ds_complemento;
+    this.perfil.nm_cidade = createPerfilDto.nm_cidade;
+    this.perfil.nm_bairro = createPerfilDto.nm_bairro;
+    this.perfil.tp_estado = createPerfilDto.tp_estado;
+    this.perfil.ds_email = createPerfilDto.ds_email;
+    this.perfil.nr_telefone = createPerfilDto.nr_telefone;
+    
+          
     try {
-      /*
+        const savedEntity = await this.perfilRepository.save(this.perfil);
+        //const savedEntity = await this.perfilRepository.save(perfilInterface);
 
-        let twygoIntegracao = new TwygoIntegracao();
-        try{
-            const validatedData = await validationPipe.transform(
-                insertTwygoIntegracaoDTO, 
-                { type: 'body', metatype: InsertTwygoIntegracaoDto, data: '' }
-            );
-            
-            twygoIntegracao.status = validatedData.status;                
-            twygoIntegracao.data_envio = validatedData.data_envio;
-            twygoIntegracao.dados_api = validatedData.dados_api;
-            twygoIntegracao.retorno_api = validatedData.retorno_api;
-            twygoIntegracao.jwt = validatedData.jwt;
-        }catch(error){            
-            throw this.helpers.handleError({response:error.response});
-            //console.log({response:error.response})
-        };
-        */
-        
-
-        const savedEntity = await this.perfilRepository.save(createPerfilDto);
-        return savedEntity;     
+        //console.log(savedEntity);
+        //return savedEntity;     
+        return this.helpers.funcReturnObject(savedEntity,undefined,`sucesso`);
 
     } catch (error) {
         //console.log(error);
-        throw this.helpers.handleError(error);
+        //throw this.helpers.handleError(error);
+        return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
 
   };

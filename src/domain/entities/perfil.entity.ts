@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
+import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto' 
+
 @Entity('perfil')
 export class Perfil {
     

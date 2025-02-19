@@ -30,8 +30,8 @@ export class Perfil {
     @PrimaryGeneratedColumn()
     cd_perfil: number
 
-    @Column({ type: 'varchar', length: 20, nullable: false })
-    tp_perfil: string /* É POSSÍVEL DEFINIR SE O PERFIL É COMPRADOR OU VENDEDOR*/
+    @Column({ type: 'varchar', length: 20 })
+    tp_perfil: string /* É POSSÍVEL DEFINIR SE O PERFIL É COMPRADOR OU VENDEDOR NO MOMENTO DO CADASTRO, OU POSTERIORMENTE*/
 
     @Column({ type: 'varchar', length: 20, nullable: false })
     tp_pessoa: string /* PESSOA FÍSCIA OU JURÍDICA */

@@ -83,6 +83,19 @@ export class PerfilService {
        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
        return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
-};
+  };
+
+  public async find_nr_documento_pessoa(pNr_documento_pessoa:string): Promise<[ ]> {        
+    try{
+      const ret =  await this.perfilRepository.findOne({
+        where: {
+          nr_documento_pessoa: pNr_documento_pessoa
+        }
+      });
+      return this.helpers.funcReturnObject(ret,undefined,`sucesso`);
+    }catch(error){     
+       return this.helpers.funcReturnObject(error,undefined,`Erro`);
+    };
+  };
 
 }

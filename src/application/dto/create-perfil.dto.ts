@@ -2,7 +2,7 @@ import { IsEmail, IsNotEmpty, IsOptional, MinLength,MaxLength } from 'class-vali
 
 export class CreatePerfilDto {
 
-    @IsNotEmpty() 
+    @IsOptional()
     tp_perfil: string
 
     @IsNotEmpty() 

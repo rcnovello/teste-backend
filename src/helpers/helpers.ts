@@ -1,9 +1,7 @@
-import { promises } from 'dns';
 import Lodash from 'lodash';
-import { Length } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
-import { Observable } from 'rxjs';
 
+//Classe com funções úteis para evitar repetição de códigos
 export class Helpers {
     
     private _errorMessage: any = 'Erro nos parâmetros programáticos do web-service!';
@@ -14,8 +12,7 @@ export class Helpers {
         this._errorMessage = value;
     };
 
-
-    
+    //Função para tratar campos em request ou response
     public handleError(_error: any): string {   
     
         return _error.response?.data?.message ||             
@@ -25,12 +22,11 @@ export class Helpers {
             //'Erro nos parâmentos do código e web-service!'       
             this._errorMessage
     };
-    
-   
+       
+    //Função que pode ser utilizada para obter uma data no formato DD/MM/YYYY
     public formatDateDDMMYYYY(pDate:Date){
-        pDate.setUTCHours(+3)
-        //new Date(pDate).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }).slice(0, 10);
-        return pDate.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }).slice(0,10);
+        pDate.setUTCHours(+3)        
+        return pDate.toLocaleString(process.env.DATE_TIME_LANG, { timeZone: process.env.TZ }).slice(0,10);
     };
   
     public formatDateTimeDDMMYYYY(pDate:Date){       
@@ -50,7 +46,9 @@ export class Helpers {
     };
     
 
-    public funcReturnObject(obj:any,pTitle:string=`Response`,pApplication:string=`Error`){               
+    public funcReturnObject(obj:any,pTitle:string=`Response`,pApplication:string=`Error`){ 
+
+        
         if(obj !== undefined && obj !== null && obj.constructor == Object){
           return obj;
         }else{                      

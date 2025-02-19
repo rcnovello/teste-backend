@@ -7,7 +7,7 @@ import { Helpers } from '@appModules/helpers/helpers';
 import { Perfil } from '@appModules/domain/entities/perfil.entity';
 import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
 
-import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+//import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 
 
 
@@ -21,17 +21,23 @@ export class PerfilService {
    
 };
 
+  //instanciar objeto da classe Helpers onde consigo obter algumas funções frequentemente utilizadas. 
   private helpers: Helpers = new Helpers();
 
+  //Instanciar objeto da classe Perfil para armazenar informações recebidas.
   private perfil: Perfil;
 
+
+  //Sempre podemos deixar um hello word de cada projeto.. rs
   getHello(): string {
     return 'Rota perfil';
   }
 
+  //
   public async create(createPerfilDto: CreatePerfilDto) {
-    //public async create(perfilInterface: PerfilInterface) {
+    
 
+    //Criar objeto Perfil após processado pelo ValidationPipe
     this.perfil = new Perfil();
     this.perfil.tp_perfil = createPerfilDto.tp_perfil;
     this.perfil.tp_pessoa = createPerfilDto.tp_pessoa;
@@ -52,15 +58,13 @@ export class PerfilService {
           
     try {
         const savedEntity = await this.perfilRepository.save(this.perfil);
-        //const savedEntity = await this.perfilRepository.save(perfilInterface);
 
-        //console.log(savedEntity);
-        //return savedEntity;     
+        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
         return this.helpers.funcReturnObject(savedEntity,undefined,`sucesso`);
 
     } catch (error) {
-        //console.log(error);
-        //throw this.helpers.handleError(error);
+
+        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
         return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
 
@@ -68,17 +72,16 @@ export class PerfilService {
 
   public async findAll(): Promise<[ ]> {        
     try{
-        //let vPk: TwygoIntegracaoInterface = { pk: 1};
-        //console.log(vPk);
-        //Enviar todos os funcionarios ativos
 
-        //this.create();
+      //Executando uma query personalizada
+      const ret =  await this.perfilRepository.query(`select * from perfil`);        
 
-        const ret =  this.perfilRepository.query(`select * from perfil`);
-        return ret;
+      //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
+      return this.helpers.funcReturnObject(ret,undefined,`sucesso`);
 
     }catch(error){     
-       throw this.helpers.handleError(error);
+       //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
+       return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
 };
 

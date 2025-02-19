@@ -15,7 +15,7 @@ import { PerfilService } from '@appModules/domain/services/perfil.services';
         //database: process.env.MYSQLDB_DATABASE,
         database: 'wefit',
         entities: [Perfil],
-        synchronize: true}),
+        synchronize: true}), //Lembrar de false quando produção
       TypeOrmModule.forFeature([Perfil])],    
   providers: [PerfilService],          
   exports: [PerfilService],    

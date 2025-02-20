@@ -10,12 +10,10 @@ import { MysqlPersistenceModule } from '@appModules/infrastructure/persistence/m
 
 @Module({
   imports: [ConfigModule.forRoot({
-    envFilePath: `${process.env.NODE_ENV}`
+    envFilePath: `${process.env.NODE_ENV}.env`
   }),
-  MysqlPersistenceModule],
-  //controllers: [AppController],
-  controllers: [PerfilController],
-  //providers: [AppService],
-  //providers: [PerfilService],
+  MysqlPersistenceModule],  
+  controllers: [AppController,PerfilController],
+  providers: [AppService],  
 })
 export class AppModule {}

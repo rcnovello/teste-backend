@@ -1,64 +1,63 @@
-import { IsEmail, IsNotEmpty, IsOptional, MinLength,MaxLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, MinLength,MaxLength, IsString, IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
+import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 
-export class UpdatePerfilDto {
+export class UpdatePerfilDto implements PerfilInterface {
+   
 
-    /*
+    @IsNotEmpty()
+    @IsNumber()    
+    @Type(() => Number)  
+    cd_perfil: number
 
     @IsOptional()
     tp_perfil: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     tp_pessoa: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     nr_documento_pessoa: string
     
-    @IsNotEmpty() 
+    @IsOptional() 
     nr_cpf_responsavel: string
-
-    */
-
     
-
-    @IsNotEmpty() 
+    @IsOptional()
+    @IsString()
     nm_perfil: string
 
-    
-    @IsNotEmpty() 
-    nr_celular?: string      
+    @IsOptional()
+    @MinLength(9)
+    nr_celular: string      
 
-    /*
-
-    @IsNotEmpty() 
+    @IsOptional() 
     nr_cep: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     ds_logradouro: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     nr_logradouro: number
 
-    @IsNotEmpty() 
+    @IsOptional() 
     ds_complemento: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     nm_cidade: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     nm_bairro: string
 
-    @IsNotEmpty() 
+    @IsOptional() 
     @MinLength(2)
     @MaxLength(2)
     tp_estado: string
 
+    @IsOptional() 
     @IsEmail()
-    @IsNotEmpty() 
     ds_email: string
 
     @IsOptional()    
     nr_telefone: string
-
-    */
 
 };

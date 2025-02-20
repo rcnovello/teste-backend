@@ -71,31 +71,12 @@ export class PerfilService {
 
   //Criar novo perfil
   public async update(perfilInterface: PerfilInterface) {
-    //public async update(updatePerfilDto: UpdatePerfilDto) {
 
-    console.log(perfilInterface);
-
-    //console.log(updatePerfilDto);
-
-    return;
-
-    //this.perfil = new Perfil();
-    //this.perfil.cd_perfil = Number(perfilInterface.cd_perfil);
-    //this.perfil.nm_perfil = String(perfilInterface.nm_perfil);
-
-    //console.log(this.perfil);
-
-    //return;
-  
     try {
-        //const updateEntity = await this.perfilRepository.update(Number(perfilInterface.cd_perfil),perfilInterface);
-
-        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
-        //return this.helpers.funcReturnObject(updateEntity,undefined,`sucesso`);
+        const updateEntity = await this.perfilRepository.update(Number(perfilInterface.cd_perfil),perfilInterface);
+        return this.helpers.funcReturnObject(updateEntity,undefined,`sucesso`);
 
     } catch (error) {
-
-        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
         return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
 
@@ -127,6 +108,21 @@ export class PerfilService {
     }catch(error){     
        return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
+  };
+
+  //Criar novo perfil
+  public async delete(perfilInterface: PerfilInterface) {
+
+    console.log(perfilInterface.cd_perfil);
+
+    try {
+        const deleteEntity = await this.perfilRepository.delete(Number(perfilInterface.cd_perfil));
+        return this.helpers.funcReturnObject(deleteEntity,undefined,`sucesso`);
+
+    } catch (error) {
+        return this.helpers.funcReturnObject(error,undefined,`Erro`);
+    };
+
   };
 
 }

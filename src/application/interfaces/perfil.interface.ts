@@ -3,7 +3,7 @@ export interface PerfilInterface {
     cd_perfil?: number
     tp_perfil?: string
     tp_pessoa?: string
-    nr_documento_pessoa: string
+    nr_documento_pessoa?: string
     nr_cpf_responsavel?: string
     nm_perfil?: string
     nr_celular?: string        
@@ -16,5 +16,5 @@ export interface PerfilInterface {
     tp_estado?: string
     ds_email?: string
     nr_telefone?: string
-    
+
 }

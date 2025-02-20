@@ -6,8 +6,9 @@ import { Helpers } from '@appModules/helpers/helpers';
 
 import { Perfil } from '@appModules/domain/entities/perfil.entity';
 import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
+import { UpdatePerfilDto } from '@appModules/application/dto/update-perfil.dto'
 
-//import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 
 
 
@@ -33,10 +34,8 @@ export class PerfilService {
     return 'Rota perfil';
   }
 
-  //
+  //Criar novo perfil
   public async create(createPerfilDto: CreatePerfilDto) {
-    
-
     //Criar objeto Perfil após processado pelo ValidationPipe
     this.perfil = new Perfil();
     this.perfil.tp_perfil = createPerfilDto.tp_perfil;
@@ -61,6 +60,38 @@ export class PerfilService {
 
         //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
         return this.helpers.funcReturnObject(savedEntity,undefined,`sucesso`);
+
+    } catch (error) {
+
+        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
+        return this.helpers.funcReturnObject(error,undefined,`Erro`);
+    };
+
+  };
+
+  //Criar novo perfil
+  public async update(perfilInterface: PerfilInterface) {
+    //public async update(updatePerfilDto: UpdatePerfilDto) {
+
+    console.log(perfilInterface);
+
+    //console.log(updatePerfilDto);
+
+    return;
+
+    //this.perfil = new Perfil();
+    //this.perfil.cd_perfil = Number(perfilInterface.cd_perfil);
+    //this.perfil.nm_perfil = String(perfilInterface.nm_perfil);
+
+    //console.log(this.perfil);
+
+    //return;
+  
+    try {
+        //const updateEntity = await this.perfilRepository.update(Number(perfilInterface.cd_perfil),perfilInterface);
+
+        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
+        //return this.helpers.funcReturnObject(updateEntity,undefined,`sucesso`);
 
     } catch (error) {
 

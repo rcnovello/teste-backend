@@ -1,32 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
-
 @Entity('perfil')
 export class Perfil {
 
-    /*
-      @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  private _name: string;
-
-  constructor(name: string) {
-    this._name = name;
-  }
-
-  get name(): string {
-    return this._name.toUpperCase(); // Exemplo de transformação
-  }
-
-  set name(value: string) {
-    if (!value || value.length < 3) {
-      throw new Error('O nome deve ter pelo menos 3 caracteres.');
-    }
-    this._name = value;
-  }
-    */
-    
     @PrimaryGeneratedColumn()
     cd_perfil: number
 

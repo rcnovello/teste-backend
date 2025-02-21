@@ -1,5 +1,4 @@
 import Lodash from 'lodash';
-import { ValidationPipe } from '@nestjs/common';
 
 //Classe com funções úteis para evitar repetição de códigos
 export class Helpers {
@@ -34,8 +33,7 @@ export class Helpers {
     };
     
     
-    //Map object Json
-    //public lodashUtil(_obj:object): Promise< any >{        
+    //Transformar campos do objeto json em minusculo     
     public utilLodash(_obj:object){
         try{
             //return Lodash.map(_obj, (item) => Lodash.mapKeys(item, (value, key) => key.toLowerCase()));
@@ -45,10 +43,8 @@ export class Helpers {
         };
     };
     
-
+    //Transformar e retornar parametros em um objeto json padronizado e personalizado.
     public funcReturnObject(obj:any,pTitle:string=`Response`,pApplication:string=`Error`){ 
-
-        
         if(obj !== undefined && obj !== null && obj.constructor == Object){
           return obj;
         }else{                      
@@ -56,49 +52,5 @@ export class Helpers {
           return cRetObject;    
         };    
     };
-
-    /** TESTAR
-         let vDataIncial = new Date();
-
-    console.log(vDataIncial.toLocaleString());
-
-    const [month, day, year] = [
-        vDataIncial.toLocaleString().slice(3,5),
-        vDataIncial.toLocaleString().slice(0,2),
-        vDataIncial.toLocaleString().slice(6,10),
-    ];
-
-    return console.log(`${year}-${month}-${day}`);
-    
-     */
-
-    public async validationPipe(objInterface: Object, Dto: any){
-        //Validar com DTO
-        const validationPipe = new ValidationPipe({
-            whitelist: true // Remove propriedades não definidas no DTO
-            ,forbidNonWhitelisted: true // Lança erro se houver propriedades não permitidas
-            ,transform: true // Converte automaticamente os tipos dos dados
-        });
-
-        try{
-            //Validar DTO
-            const result = await validationPipe.transform(
-                objInterface,
-                { type: 'body', metatype: Dto, data: '' }
-            );
-            
-            return result;
-
-        }catch(error){
-            //console.log({response:error.response});
-            //return {response:error.response};
-            //return error;
-            //console.log(error.response);
-            throw error.response
-            //return {response:error.response};
-
-        };
-
-    }
 
 }

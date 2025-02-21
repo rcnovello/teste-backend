@@ -25,19 +25,17 @@ export class PerfilService {
   //instanciar objeto da classe Helpers onde consigo obter algumas funções frequentemente utilizadas. 
   private helpers: Helpers = new Helpers();
 
-  //Instanciar objeto da classe Perfil para armazenar informações recebidas.
   private perfil: Perfil;
-
 
   //Sempre podemos deixar um hello word de cada projeto.. rs
   getHello(): string {
-    return 'Rota perfil';
+    return 'Rotas perfil';
   }
 
-  //Criar novo perfil
   public async create(createPerfilDto: CreatePerfilDto) {
-    //Criar objeto Perfil após processado pelo ValidationPipe
+
     this.perfil = new Perfil();
+
     this.perfil.tp_perfil = createPerfilDto.tp_perfil;
     this.perfil.tp_pessoa = createPerfilDto.tp_pessoa;
     this.perfil.nr_documento_pessoa= createPerfilDto.nr_documento_pessoa;
@@ -63,13 +61,11 @@ export class PerfilService {
 
     } catch (error) {
 
-        //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
         return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
 
   };
 
-  //Criar novo perfil
   public async update(perfilInterface: PerfilInterface) {
 
     try {
@@ -87,13 +83,10 @@ export class PerfilService {
 
       //Executando uma query personalizada
       const ret =  await this.perfilRepository.query(`select * from perfil`);        
-
-      //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
       return this.helpers.funcReturnObject(ret,undefined,`sucesso`);
 
     }catch(error){     
-       //Retornar a função funcReturnObject para um formato mais adequado para o FrontEnd sinalizando Sucesso ou Erro
-       return this.helpers.funcReturnObject(error,undefined,`Erro`);
+        return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };
   };
 
@@ -110,7 +103,6 @@ export class PerfilService {
     };
   };
 
-  //Criar novo perfil
   public async delete(perfilInterface: PerfilInterface) {
 
     console.log(perfilInterface.cd_perfil);

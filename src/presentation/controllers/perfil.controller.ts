@@ -1,16 +1,26 @@
 import { Controller, Get, Post, Body, Query, Patch, Put, Delete } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
 
-import { PerfilService } from '@appModules/domain/services/perfil.services';
+//import { PerfilService } from '@appModules/domain/services/perfil.services';
+import { PerfilService } from '../../domain/services/perfil.services';
 
-import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
-import { UpdatePerfilDto } from '@appModules/application/dto/update-perfil.dto'
-import { DeletePerfilDto } from '@appModules/application/dto/delete-perfil.dto'
+//import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
+import { CreatePerfilDto } from '../../application/dto/create-perfil.dto'
 
-import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+//mport { UpdatePerfilDto } from '@appModules/application/dto/update-perfil.dto'
+import { UpdatePerfilDto } from '../../application/dto/update-perfil.dto'
 
-import { Helpers } from '@appModules/helpers/helpers'
+//import { DeletePerfilDto } from '@appModules/application/dto/delete-perfil.dto'
+import { DeletePerfilDto } from '../../application/dto/delete-perfil.dto'
 
+//import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+import { PerfilInterface } from '../../application/interfaces/perfil.interface'
+
+//import { Helpers } from '@appModules/helpers/helpers'
+import { Helpers } from '../../helpers/helpers'
+
+
+//@Controller('PerfilController')
 @Controller('perfil')
 export class PerfilController {  
 
@@ -22,8 +32,10 @@ export class PerfilController {
     public  perfilInterface: PerfilInterface;
 
     @Get('/todos')
-    findAll() {
-      return this.perfilService.findAll();
+    async find_all() {
+      const ret = await this.perfilService.findAll();      
+      console.log(ret);
+      return ret;      
     };
     
     @Get()    

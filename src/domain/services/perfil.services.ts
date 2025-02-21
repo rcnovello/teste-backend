@@ -1,14 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
+//import { Perfil } from '@appModules/domain/entities/perfil.entity';
+import { Perfil } from '../../domain/entities/perfil.entity';
 
-import { Helpers } from '@appModules/helpers/helpers';
+//import { Helpers } from '@appModules/helpers/helpers';
+import { Helpers } from '../../helpers/helpers';
 
-import { Perfil } from '@appModules/domain/entities/perfil.entity';
-import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
-import { UpdatePerfilDto } from '@appModules/application/dto/update-perfil.dto'
 
-import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+//import { CreatePerfilDto } from '@appModules/application/dto/create-perfil.dto'
+import { CreatePerfilDto } from '../../application/dto/create-perfil.dto'
+
+//import { UpdatePerfilDto } from '@appModules/application/dto/update-perfil.dto'
+
+//import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
+import { PerfilInterface } from '../../application/interfaces/perfil.interface'
 
 
 

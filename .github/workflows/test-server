@@ -1,0 +1,43 @@
+name: Testar no servidor do GitHub
+
+on:
+  push:
+    branches:
+      - main  # Roda o workflow quando há um push na branch main
+
+jobs:
+  test-server:
+    runs-on: ubuntu-latest  # Usa um servidor temporário do GitHub
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # Usa a versão do Node.js compatível com seu projeto
+          cache: 'npm'
+
+      - name: 📦 Instalar dependências
+        run: npm install
+
+      - name: 🔍 Rodar testes
+        run: npm test
+
+      - name: 🏗️ Build do projeto
+        run: npm run build
+
+      - name: 🚀 Iniciar aplicação em segundo plano
+        run: |
+          npm install -g pm2
+          pm2 start dist/main.js --name "nestjs-app"
+          pm2 save
+
+      - name: 🏆 Testar a API localmente
+        run: |
+          sleep 5  # Espera alguns segundos para garantir que a aplicação subiu
+          curl --retry 5 --retry-delay 5 -I http://localhost:3000 || exit 1
+
+      - name: 🛑 Finalizar aplicação
+        run: pm2 stop all

@@ -36,7 +36,7 @@ export class PerfilService {
 
   //Sempre podemos deixar um hello word de cada projeto.. rs
   getHello(): string {
-    return 'Rotas perfil';
+    return 'End-point perfil';
   }
 
   public async create(createPerfilDto: CreatePerfilDto) {

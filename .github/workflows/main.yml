@@ -30,7 +30,7 @@ jobs:
           sleep 15  # Tempo suficiente para o MySQL iniciar
 
       - name: ✅ Rodar testes dentro do container
-        run: ./docker-compose exec -T wefit_dev npm test
+        run: docker compose exec -T app npm test
 
       - name: 🛑 Parar e remover containers
         run: docker-compose down

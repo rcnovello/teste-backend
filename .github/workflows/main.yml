@@ -1,0 +1,47 @@
+name: Deploy NestJS
+
+on:
+  push:
+    branches:
+      - main  # Executa quando há push na branch main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Usa a versão do Node.js compatível com seu projeto
+          cache: 'npm' # Cacheia dependências para builds mais rápidos
+
+      - name: 📦 Instalar dependências
+        run: npm install
+
+      - name: 🔍 Rodar testes
+        run: npm test
+
+      - name: 🏗️ Build do projeto
+        run: npm run build
+
+      - name: 🚀 Deploy para servidor remoto (via SSH)
+        if: success()  # Executa apenas se os passos anteriores forem bem-sucedidos
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -i private_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
+            cd $DEPLOY_PATH
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart all
+          EOF
+          rm -f private_key

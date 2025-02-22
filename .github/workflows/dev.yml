@@ -1,0 +1,27 @@
+name: Backend Docker AppNode Mysql NestJs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Subir containers com Docker Compose
+        run: docker compose -f ./docker-compose.yml up -d
+
+      - name: Subir banco de dados
+        run: |
+          sleep 15 Aguardar MySQL iniciar
+
+      - name: Executar testes
+        run: docker compose exec -T node npm test
+
+      - name: Finalizar containers
+        run: docker compose down

@@ -22,7 +22,7 @@ jobs:
           echo "DB_NAME=wefit" >> .env.test
 
       - name: 🚀 Subir containers com Docker Compose
-        run: docker-compose up -d
+        run: docker compose -f ./docker-compose.yml up -d
 
       - name: ⏳ Aguardar banco de dados
         run: |

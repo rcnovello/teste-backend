@@ -16,10 +16,6 @@ import { DeletePerfilDto } from '../../application/dto/delete-perfil.dto'
 //import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 import { PerfilInterface } from '../../application/interfaces/perfil.interface'
 
-//import { Helpers } from '@appModules/helpers/helpers'
-//import { Helpers } from '../../helpers/helpers'
-
-
 //@Controller('PerfilController')
 @Controller('perfil')
 export class PerfilController {  
@@ -34,14 +30,11 @@ export class PerfilController {
     
     @Get('/todos')
     find_all() {
-      //const ret = await this.perfilService.findAll();            
-      //return ret;      
       return this.perfilService.findAll();            
     };
     
     @Get()    
-    find_nr_documento_pessoa(
-      //@Query('nr_documento_pessoa') pNr_documento_pessoa: string      
+    find_nr_documento_pessoa(     
       @Query('nr_documento_pessoa') pNr_documento_pessoa: string      
     ){        
         return this.perfilService.find_nr_documento_pessoa(pNr_documento_pessoa);
@@ -53,8 +46,8 @@ export class PerfilController {
     };
     
     @Put()
-    update(@Body(new ValidationPipe()) createPerfilDto: CreatePerfilDto){
-      return this.perfilService.update(createPerfilDto);
+    update(@Body(new ValidationPipe()) updatePerfilDto: UpdatePerfilDto){
+      return this.perfilService.update(updatePerfilDto);
     };
 
     @Patch()

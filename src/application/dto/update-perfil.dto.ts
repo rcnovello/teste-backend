@@ -15,9 +15,6 @@ export class UpdatePerfilDto implements PerfilInterface {
 
     @IsOptional() 
     tp_pessoa: string
-
-    @IsOptional() 
-    nr_documento_pessoa: string
     
     @IsOptional() 
     nr_cpf_responsavel: string

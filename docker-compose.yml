@@ -1,33 +1,15 @@
-
-networks:
-  backend:
-    driver: bridge
+version: '3.8'
 
 services:
   mysqldb:
-    networks:
-      - backend
     platform: linux/x86_64
-    image: mysql:5.6  
+    image: mysql:5.6
     restart: unless-stopped
     env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQLDB_PASSWORD}
-      - MYSQL_DATABASE=${MYSQLDB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
     ports:
-      - "${MYSQLDB_PORT}:3306"
+      - $MYSQLDB_PORT:3306
     volumes:
       - ./data/:/var/lib/mysql
-
-  node:
-    networks:
-      - backend
-    build: .
-    depends_on:
-      - mysqldb
-    ports:
-      - "4568:4568"
-    environment:
-      TZ: "America/Sao_Paulo"
-    command: ["npm", "start"]
-    container_name: wefit_dev     

@@ -75,8 +75,12 @@ export class PerfilService {
 
   public async update(perfilInterface: PerfilInterface) {
 
+    const cCd_perfil = perfilInterface.cd_perfil;
+
+    delete perfilInterface['cd_perfil']; 
+
     try {
-        const updateEntity = await this.perfilRepository.update(Number(perfilInterface.cd_perfil),perfilInterface);
+        const updateEntity = await this.perfilRepository.update(Number(cCd_perfil),perfilInterface);
         return this.helpers.funcReturnObject(updateEntity,undefined,`sucesso`);
 
     } catch (error) {

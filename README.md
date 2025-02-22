@@ -1,7 +1,61 @@
 
-  <p align="center">Trello tasks do projeto:  <a href="https://trello.com/b/aFDpQpOa/dev" target="_blank">Tasks</a> </p>
-    <p align="center">
+  <p align="left"> ***** Trello tasks do projeto ***** Para acessar os quadros clique no link: <a href="https://trello.com/b/aFDpQpOa/dev" target="_blank">Tasks</a> </p>
 
+  <p align="left"> Para compilar e executar o projeto execute docker compose up -d, irá criar um container(localhost:4568) node com o app teste-backend e dbmysql</p>
+
+  <p align="left"> Content-Type: application/x-www-form-urlencoded</p>
+
+  <p align="left"> Exemplos de testes: GET localhost:4568/perfil</p>
+  <p align="left"> Exemplos de testes: POST localhost:4568/perfil</p>
+    "tp_perfil": "COMPRADOR",
+    "tp_pessoa": "PF",
+    "nr_documento_pessoa": "4059138681",
+    "nr_cpf_responsavel": "40591386810",
+    "nm_perfil": "RONNI CORREA NOVELLO",
+    "nr_celular": "19998986530",
+    "nr_cep": "13423100",
+    "ds_logradouro": "AVENIDA DOIS CORREGOS",
+    "nr_logradouro": "4205",
+    "ds_complemento": "APARTAMENTO 12 BLOCO H1",
+    "nm_cidade": "PIRACICABA",
+    "nm_bairro": "JARDIM NOVA IGUAÇU",
+    "tp_estado": "SP",
+    "ds_email": "ronnicorrea@hotmail.com",
+    "nr_telefone": "",
+    "cd_perfil": 17
+  <p align="left"> Exemplos de testes: PUT localhost:4568/perfil</p>
+    "tp_perfil": "VENDEDOR",
+    "tp_pessoa": "PF",
+    "nr_documento_pessoa": "4059138681",
+    "nr_cpf_responsavel": "40591386810",
+    "nm_perfil": "RONNI CORREA NOVELLO",
+    "nr_celular": "19998986530",
+    "nr_cep": "13423100",
+    "ds_logradouro": "AVENIDA DOIS CORREGOS",
+    "nr_logradouro": "4205",
+    "ds_complemento": "APARTAMENTO 12 BLOCO H1",
+    "nm_cidade": "PIRACICABA",
+    "nm_bairro": "JARDIM NOVA IGUAÇU",
+    "tp_estado": "SP",
+    "ds_email": "ronnicorrea@hotmail.com",
+    "nr_telefone": "1934175975",
+    "cd_perfil": 17
+
+  <p align="left"> Exemplos de testes: PATCH localhost:4568/perfil</p>
+  cd_perfil=1
+  nm_perfil=Teste ronni
+  tp_perfil=COMPRADOR
+  nr_celular=123456789
+
+  <p align="left"> Exemplos de testes: DELETE localhost:4568/perfil</p>
+  Exemplo parametros: cd_perfil=1
+
+  <p align="left">                     GET localhost:4568/perfil?nr_documento_pessoa=40591386810</p>
+  <p align="left">                     GET localhost:4568/ping</p>
+  <p align="left">                     GET localhost:4568/perfil/hello</p>
+
+
+<p align="center">
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>

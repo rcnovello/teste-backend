@@ -1,47 +1,36 @@
-name: Deploy NestJS
+name: Testar NestJS com Docker Compose
 
 on:
   push:
     branches:
-      - main  # Executa quando há push na branch main
+      - main
 
 jobs:
-  deploy:
+  test-server:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout do repositório
+      - name: 📥 Checkout do código
         uses: actions/checkout@v4
 
-      - name: 🔧 Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20 # Usa a versão do Node.js compatível com seu projeto
-          cache: 'npm' # Cacheia dependências para builds mais rápidos
-
-      - name: 📦 Instalar dependências
-        run: npm install
-
-      - name: 🔍 Rodar testes
-        run: npm test
-
-      - name: 🏗️ Build do projeto
-        run: npm run build
-
-      - name: 🚀 Deploy para servidor remoto (via SSH)
-        if: success()  # Executa apenas se os passos anteriores forem bem-sucedidos
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_HOST: ${{ secrets.SERVER_HOST }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+      - name: 🛠️ Criar `.env.test`
         run: |
-          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -i private_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
-            cd $DEPLOY_PATH
-            git pull origin main
-            npm install
-            npm run build
-            pm2 restart all
-          EOF
-          rm -f private_key
+          echo "DB_HOST=mysqldb" >> .env.test
+          echo "DB_PORT=3306" >> .env.test
+          echo "DB_USER=root" >> .env.test
+          echo "DB_PASSWORD=senha_root_123" >> .env.test
+          echo "DB_NAME=wefit" >> .env.test
+
+      - name: 🚀 Subir containers com Docker Compose
+        run: docker-compose up -d
+
+      - name: ⏳ Aguardar banco de dados
+        run: |
+          echo "Aguardando banco de dados..."
+          sleep 15  # Tempo suficiente para o MySQL iniciar
+
+      - name: ✅ Rodar testes dentro do container
+        run: docker-compose exec -T app npm test
+
+      - name: 🛑 Parar e remover containers
+        run: docker-compose down

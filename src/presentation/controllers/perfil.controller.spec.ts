@@ -29,8 +29,8 @@ describe('PerfilController', () => {
   });
   
   describe('/hello', () => {
-    it('should return "Rotas perfil"', () => {
-      expect(perfilController.getHello()).toBe('Rotas perfil');
+    it('should return "End-point perfil"', () => {
+      expect(perfilController.getHello()).toBe('End-point perfil');
     });
   });
 

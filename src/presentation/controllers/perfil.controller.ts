@@ -17,7 +17,7 @@ import { DeletePerfilDto } from '../../application/dto/delete-perfil.dto'
 import { PerfilInterface } from '../../application/interfaces/perfil.interface'
 
 //import { Helpers } from '@appModules/helpers/helpers'
-import { Helpers } from '../../helpers/helpers'
+//import { Helpers } from '../../helpers/helpers'
 
 
 //@Controller('PerfilController')
@@ -28,18 +28,20 @@ export class PerfilController {
         private readonly perfilService: PerfilService        
     ) {}
 
-    private helpers: Helpers = new Helpers();   
-    public  perfilInterface: PerfilInterface;
-
+    //private helpers: Helpers = new Helpers();   
+    
+    public readonly perfilInterface: PerfilInterface;
+    
     @Get('/todos')
-    async find_all() {
-      const ret = await this.perfilService.findAll();      
-      console.log(ret);
-      return ret;      
+    find_all() {
+      //const ret = await this.perfilService.findAll();            
+      //return ret;      
+      return this.perfilService.findAll();            
     };
     
     @Get()    
     find_nr_documento_pessoa(
+      //@Query('nr_documento_pessoa') pNr_documento_pessoa: string      
       @Query('nr_documento_pessoa') pNr_documento_pessoa: string      
     ){        
         return this.perfilService.find_nr_documento_pessoa(pNr_documento_pessoa);
@@ -62,13 +64,11 @@ export class PerfilController {
     
     @Delete() 
     delete(@Body(new ValidationPipe()) deletePerfilDto: DeletePerfilDto){
-      console.log(deletePerfilDto.cd_perfil);    
       return this.perfilService.delete(deletePerfilDto);
     };
 
     @Get('/hello')
-    getHello(): string {
-      //return this.helpers.funcReturnObject(this.perfilService.getHello(),undefined,'Application')
+    getHello(): string {    
       return this.perfilService.getHello();
     };     
 

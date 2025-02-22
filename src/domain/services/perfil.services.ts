@@ -87,11 +87,9 @@ export class PerfilService {
 
   public async findAll(): Promise<[ ]> {        
     try{
-
       //Executando uma query personalizada
       const ret =  await this.perfilRepository.query(`select * from perfil`);        
       return this.helpers.funcReturnObject(ret,undefined,`sucesso`);
-
     }catch(error){     
         return this.helpers.funcReturnObject(error,undefined,`Erro`);
     };

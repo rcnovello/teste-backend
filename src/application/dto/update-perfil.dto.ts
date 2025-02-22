@@ -4,7 +4,6 @@ import { PerfilInterface } from '@appModules/application/interfaces/perfil.inter
 
 export class UpdatePerfilDto implements PerfilInterface {
    
-
     @IsNotEmpty()
     @IsNumber()    
     @Type(() => Number)  

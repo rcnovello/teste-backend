@@ -6,54 +6,56 @@
   <p align="left"> Content-Type: application/x-www-form-urlencoded</p>
 
   <p align="left"> Exemplos de testes: GET localhost:4568/perfil</p>
-  <p align="left"> Exemplos de testes: POST localhost:4568/perfil</p>
-    "tp_perfil": "COMPRADOR",
-    "tp_pessoa": "PF",
-    "nr_documento_pessoa": "4059138681",
-    "nr_cpf_responsavel": "40591386810",
-    "nm_perfil": "RONNI CORREA NOVELLO",
-    "nr_celular": "19998986530",
-    "nr_cep": "13423100",
-    "ds_logradouro": "AVENIDA DOIS CORREGOS",
-    "nr_logradouro": "4205",
-    "ds_complemento": "APARTAMENTO 12 BLOCO H1",
-    "nm_cidade": "PIRACICABA",
-    "nm_bairro": "JARDIM NOVA IGUAÇU",
-    "tp_estado": "SP",
-    "ds_email": "ronnicorrea@hotmail.com",
-    "nr_telefone": "",
-    "cd_perfil": 17
-  <p align="left"> Exemplos de testes: PUT localhost:4568/perfil</p>
-    "tp_perfil": "VENDEDOR",
-    "tp_pessoa": "PF",
-    "nr_documento_pessoa": "4059138681",
-    "nr_cpf_responsavel": "40591386810",
-    "nm_perfil": "RONNI CORREA NOVELLO",
-    "nr_celular": "19998986530",
-    "nr_cep": "13423100",
-    "ds_logradouro": "AVENIDA DOIS CORREGOS",
-    "nr_logradouro": "4205",
-    "ds_complemento": "APARTAMENTO 12 BLOCO H1",
-    "nm_cidade": "PIRACICABA",
-    "nm_bairro": "JARDIM NOVA IGUAÇU",
-    "tp_estado": "SP",
-    "ds_email": "ronnicorrea@hotmail.com",
-    "nr_telefone": "1934175975",
-    "cd_perfil": 17
 
   <p align="left"> Exemplos de testes: PATCH localhost:4568/perfil</p>
-  cd_perfil=1
-  nm_perfil=Teste ronni
-  tp_perfil=COMPRADOR
-  nr_celular=123456789
+  Exemplo parametros: cd_perfil=1
+                      nm_perfil=Teste ronni teste update
+                      tp_perfil=COMPRADOR
+                      nr_celular=123456789
+
+  <p align="left"> Exemplos de testes: POST localhost:4568/perfil</p>
+  Exemplo parametros: "tp_perfil": "COMPRADOR",
+                        "tp_pessoa": "PF",
+                        "nr_documento_pessoa": "4059138681",
+                        "nr_cpf_responsavel": "40591386810",
+                        "nm_perfil": "RONNI CORREA NOVELLO",
+                        "nr_celular": "19998986530",
+                        "nr_cep": "13423100",
+                        "ds_logradouro": "AVENIDA DOIS CORREGOS",
+                        "nr_logradouro": "4205",
+                        "ds_complemento": "APARTAMENTO 12 BLOCO H1",
+                        "nm_cidade": "PIRACICABA",
+                        "nm_bairro": "JARDIM NOVA IGUAÇU",
+                        "tp_estado": "SP",
+                        "ds_email": "ronnicorrea@hotmail.com",
+                        "nr_telefone": "",
+                        "cd_perfil": 17
+
+  <p align="left"> Exemplos de testes: PUT localhost:4568/perfil</p>
+  Exemplo parametros: "cd_perfil": 9,
+                      "tp_perfil": "VENDEDOR",
+                      "tp_pessoa": "PF",
+                      "nr_cpf_responsavel": "40591386810",
+                      "nm_perfil": "RONNI CORREA NOVELLO",
+                      "nr_celular": "19998986530",
+                      "nr_cep": "13423100",
+                      "ds_logradouro": "AVENIDA DOIS CORREGOS",
+                      "nr_logradouro": "4205",
+                      "ds_complemento": "APARTAMENTO 12 BLOCO H1",
+                      "nm_cidade": "PIRACICABA",
+                      "nm_bairro": "JARDIM NOVA IGUAÇU",
+                      "tp_estado": "SP",
+                      "ds_email": "ronnicorrea@hotmail.com",
+                      "nr_telefone": "1934175975"
 
   <p align="left"> Exemplos de testes: DELETE localhost:4568/perfil</p>
-  Exemplo parametros: cd_perfil=1
+  Exemplo parametros: cd_perfil=17
 
-  <p align="left">                     GET localhost:4568/perfil?nr_documento_pessoa=40591386810</p>
-  <p align="left">                     GET localhost:4568/ping</p>
-  <p align="left">                     GET localhost:4568/perfil/hello</p>
+  <p align="left"> Exemplos de testes: GET localhost:4568/perfil?nr_documento_pessoa=40591386810</p>
+  Exemplo parametros: Buscar um nr_documento_pessoa especifico
 
+  <p align="left"> Exemplos de testes: GET localhost:4568/ping</p>
+  <p align="left"> Exemplos de testes: GET localhost:4568/perfil/hello</p>
 
 <p align="center">
 <p align="center">

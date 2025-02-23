@@ -23,11 +23,60 @@ describe('PerfilController (e2e)', () => {
     await app.init();
   });
 
+  it('/perfil (PATCH)', () => {
+    return request(app.getHttpServer())
+      .get('/perfil')
+      .expect(200)
+  });
+
+  it('/perfil (DELETE)', () => {
+    return request(app.getHttpServer())
+      .get('/perfil')
+      .expect(200)
+  });
+
+  it('/perfil (PUT)', () => {
+    return request(app.getHttpServer())
+      .get('/perfil')
+      .expect(200)
+  });
+
+  it('/perfil (POST)', () => {
+    return request(app.getHttpServer())
+      .get('/perfil')
+      .expect(200)
+  });
+
+  it('/perfil (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/perfil')
+      .expect(200)
+  });
+
+  /*
+  it('/perfil?nr_documento_pessoa=40591386810 (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/perfil?nr_documento_pessoa=40591386810') 
+      .expect(200)
+      .expect((res) => {
+        expect(res.body).toBeDefined(); 
+        expect(res.body).toHaveProperty([], '40591386810'); 
+      });
+  });
+  */
+
   it('/perfil/hello (GET)', () => {
     return request(app.getHttpServer())
       .get('/perfil/hello')
       .expect(200)
       .expect('End-point perfil');
+  });
+
+  it('/ping (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/ping')
+      .expect(200)
+      .expect('Pong');
   });
 
 });

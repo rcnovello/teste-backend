@@ -19,14 +19,12 @@ import { ConfigModule } from '@nestjs/config';
     ({
       type: 'mysql',
       host: process.env.MYSQLDB_HOST ?? 'localhost',      
-      //host: 'localhost', 
       port: Number(process.env.MYSQLDB_PORT),      
-      username: process.env.MYSQLDB_USERNAME,             
-      //username: 'root',             
+      username: process.env.MYSQLDB_USERNAME,                 
       password: process.env.MYSQLDB_PASSWORD,
       database: process.env.MYSQLDB_DATABASE,      
       entities: [Perfil],
-      synchronize: true
+      synchronize: Boolean(process.env.MYSQLDB_SYNCRONIZE)
     }), //Lembrar de setar synchronize = false quando produção
     TypeOrmModule.forFeature([Perfil])
   ],    

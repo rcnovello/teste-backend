@@ -13,8 +13,6 @@ describe('PerfilController', () => {
   let perfilController: PerfilController;
   let perfilService: PerfilService;
 
-  let perfilInterface: PerfilInterface
-
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
        imports: [ConfigModule.forRoot({
@@ -34,21 +32,9 @@ describe('PerfilController', () => {
     });
   });
 
-  /*
+  
   describe('/todos', () => {
-    it('Deve retornar um "array" padronizado no fomato json de dados perfís', async () => {      
-      const result: { id: number; nome: string }[] = [{ id: 1, nome: 'Admin' }];
-      const spy = jest.spyOn(perfilController, 'find_all').mockResolvedValue(result);
-      console.log('teste');      
-      console.log(result);
-      expect(await perfilController.find_all()).toBe(result);
-    });
-  });
-  */
-
-
-  describe('/todos', () => {
-    it('Deve retornar um "arra" padronizado no fomato json de dados perfís', async () => {
+    it('Deve retornar um array padronizado no fomato json de dados perfís', async () => {
       let result = Promise['teste'];
       jest.spyOn(perfilService, 'findAll').mockImplementation(() => result);
       expect(await perfilController.find_all()).toBe(result);

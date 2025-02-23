@@ -20,8 +20,11 @@ jobs:
         run: |          
           sleep 15
 
-      - name: Executar testes
+      - name: Executar testes 
         run: docker compose exec -T node npm test
+
+      - name: Executar testes end-to-end
+        run: docker compose exec -T node npm test:e2e
 
       - name: Finalizar containers
         run: docker compose down

@@ -20,7 +20,7 @@ jobs:
         run: |          
           sleep 15
 
-      - name: Executar testes 
+      - name: Executar testes unitarios
         run: docker compose exec -T node npm test
 
       - name: Executar testes end-to-end

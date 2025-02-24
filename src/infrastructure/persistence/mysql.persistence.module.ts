@@ -25,7 +25,7 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.MYSQLDB_DATABASE,      
       entities: [Perfil],
       synchronize: Boolean(process.env.MYSQLDB_SYNCRONIZE)
-    }), //Lembrar de setar synchronize = false quando produção
+    }), 
     TypeOrmModule.forFeature([Perfil])
   ],    
   providers: [PerfilService],          

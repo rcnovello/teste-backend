@@ -15,16 +15,12 @@ import { DeletePerfilDto } from '../../application/dto/delete-perfil.dto'
 
 //import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 import { PerfilInterface } from '../../application/interfaces/perfil.interface'
-
-//@Controller('PerfilController')
 @Controller('perfil')
 export class PerfilController {  
 
     constructor(
         private readonly perfilService: PerfilService        
     ) {}
-
-    //private helpers: Helpers = new Helpers();   
     
     public readonly perfilInterface: PerfilInterface;
     

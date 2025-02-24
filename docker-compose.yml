@@ -1,33 +1,69 @@
-
 networks:
-  backend:
+  backend_dev:
     driver: bridge
-
+  backend_prod:
+    driver: bridge
+    
 services:
-  mysqldb:
+  mysqldb_dev:
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 20s
     networks:
-      - backend
+      - backend_dev
     platform: linux/x86_64
     image: mysql:5.6  
     restart: unless-stopped
-    env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQLDB_PASSWORD}
-      - MYSQL_DATABASE=${MYSQLDB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=senha_root_123
+      - MYSQL_DATABASE=wefit_dev
     ports:
-      - "${MYSQLDB_PORT}:3306"
+      - "3368:3306"
     volumes:
-      - ./data/:/var/lib/mysql
+      - ./data/dev:/var/lib/mysql
 
-  node:
+  node_dev:
     networks:
-      - backend
+      - backend_dev
     build: .
     depends_on:
-      - mysqldb
+      mysqldb_dev:
+        condition: service_healthy
     ports:
       - "4568:4568"
     environment:
       TZ: "America/Sao_Paulo"
+      DB_HOST: "mysqldb_dev"
+      DB_PORT: "3306"
+    command: ["npm", "run", "start:dev"]
+    container_name: wefit_dev
+
+  mysqldb_prod:
+    networks:
+      - backend_prod
+    platform: linux/x86_64
+    image: mysql:5.6  
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=senha_root_123
+      - MYSQL_DATABASE=wefit_prod
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./data/prod:/var/lib/mysql
+  node_prod:
+    networks:
+      - backend_prod
+    build: .
+    depends_on:
+      - mysqldb_prod
+    ports:
+      - "4570:4570"
+    environment:
+      TZ: "America/Sao_Paulo"
+      DB_HOST: "mysqldb_prod"
+      DB_PORT: "3306"
     command: ["npm", "start"]
-    container_name: wefit_dev     
+    container_name: wefit_prod    

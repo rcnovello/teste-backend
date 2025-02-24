@@ -53,18 +53,6 @@ describe('PerfilController (e2e)', () => {
       .expect(200)
   });
 
-  /*
-  it('/perfil?nr_documento_pessoa=40591386810 (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/perfil?nr_documento_pessoa=40591386810') 
-      .expect(200)
-      .expect((res) => {
-        expect(res.body).toBeDefined(); 
-        expect(res.body).toHaveProperty([], '40591386810'); 
-      });
-  });
-  */
-
   it('/perfil/hello (GET)', () => {
     return request(app.getHttpServer())
       .get('/perfil/hello')

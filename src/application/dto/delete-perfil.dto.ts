@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, MinLength } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 import { Type } from 'class-transformer';
 import { PerfilInterface } from '@appModules/application/interfaces/perfil.interface'
 

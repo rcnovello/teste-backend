@@ -5,7 +5,6 @@ import { PerfilController } from '../../presentation/controllers/perfil.controll
 import { PerfilService } from '../../domain/services/perfil.services';
 
 import { MysqlPersistenceModule } from '../../infrastructure/persistence/mysql.persistence.module'
-import { PerfilInterface } from '../../application/interfaces/perfil.interface'
 
 
 describe('PerfilController', () => {

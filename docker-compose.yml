@@ -50,10 +50,10 @@ services:
       - MYSQL_ROOT_PASSWORD=senha_root_123
       - MYSQL_DATABASE=wefit_prod
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - ./data/prod:/var/lib/mysql
-      
+
   node_prod:
     networks:
       - backend_prod
